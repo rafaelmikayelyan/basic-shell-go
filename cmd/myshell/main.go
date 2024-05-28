@@ -29,6 +29,14 @@ func main() {
 			if !isFound(builtins, inputs) {
 				fmt.Fprintf(os.Stdout, "%s not found\n", inputs[1])
 			}
+		case input[0:1] == "/":
+			cmd := exec.Command(inputs[0], inputs[1:]...)
+			cmd.Stdout = os.Stdout
+			cmd.Stderr = os.Stderr
+			err := cmd.Run()
+			if err != nil {
+				fmt.Fprint(os.Stdout, err)
+			}
 		default:
 			fmt.Fprintf(os.Stdout, "%s: command not found\n", input)
 		}

@@ -24,13 +24,13 @@ func main() {
 		case input == "exit 0":
 			os.Exit(0)
 		case inputs[0] == "echo":
-			fmt.Fprint(os.Stdout, input[5:] + "\n")
+			fmt.Fprintf(os.Stdout, "$s\n", input[5:])
 		case inputs[0] == "type":
 			if !isFound(builtins, inputs) {
 				fmt.Fprintf(os.Stdout, "%s not found\n", inputs[1])
 			}
 		default:
-			fmt.Fprint(os.Stdout, input + ": command not found\n")
+			fmt.Fprintf(os.Stdout, "%s: command not found\n", input)
 		}
 	}
 }
